@@ -14,10 +14,10 @@ import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.unit.dp
 
 @Composable
-fun CreateButton(image: Int, imageDescription: String, backgroundColor: Color, modifier: Modifier = Modifier) {
+fun CreateButton(image: Int, imageDescription: String, backgroundColor: Color, modifierImage: Modifier = Modifier, modifierBox: Modifier = Modifier) {
     Box(
         contentAlignment = Alignment.Center,
-        modifier = modifier
+        modifier = modifierBox
             .size(55.dp)
             .clip(RoundedCornerShape(percent = 35))
             .background(color = backgroundColor)
@@ -25,7 +25,7 @@ fun CreateButton(image: Int, imageDescription: String, backgroundColor: Color, m
         Image(
             painter = painterResource(id = image),
             contentDescription = imageDescription,
-            modifier = Modifier
+            modifier = modifierImage
                 .size(25.dp)
                 .clip(RoundedCornerShape(percent = 35))
                 .background(color = backgroundColor)

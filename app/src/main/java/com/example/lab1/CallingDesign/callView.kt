@@ -52,15 +52,15 @@ fun CallView(
             modifier = Modifier
                 .padding(start = 16.dp, top = 50.dp)
         ) {
-            Image(
-                painter = painterResource(id = R.drawable.left_arrow),
-                contentDescription = "Go back",
-//                contentScale = ContentScale.Crop,
-                modifier = Modifier
+            CreateButton(
+                image = R.drawable.left_arrow,
+                imageDescription = "Go back",
+                backgroundColor = Color.White.copy(alpha = 0f),
+                modifierBox = Modifier
                     .size(45.dp)
                     .clip(RoundedCornerShape(percent = 35))
-                    .border(2.dp, Color.White.copy(alpha = 0.3f), RoundedCornerShape(percent = 35))
                     .background(color = Color.White.copy(alpha = 0.2f))
+                    .border(1.dp, Color.White.copy(alpha = 0.3f), RoundedCornerShape(percent = 35))
             )
         }
         Box {
