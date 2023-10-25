@@ -15,11 +15,12 @@ import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
-import androidx.compose.ui.Alignment.Companion.CenterHorizontally
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.res.painterResource
+import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
@@ -46,101 +47,46 @@ fun Profile(
         Image(
             painter = painterResource(id = user.avatar),
             contentDescription = "User Avatar",
+            contentScale = ContentScale.Crop,
             modifier = Modifier
-                .size(72.dp)
+                .size(64.dp)
                 .clip(CircleShape)
         )
-        Column(
-            horizontalAlignment = Alignment.CenterHorizontally,
+        Row(
+            verticalAlignment = Alignment.CenterVertically,
+            horizontalArrangement = Arrangement.Center,
             modifier = Modifier
-                .padding(16.dp)
+                .fillMaxWidth()
+                .padding(top = 16.dp)
         ) {
-            Row(
-                verticalAlignment = Alignment.CenterVertically,
-                horizontalArrangement = Arrangement.Center,
+            Text(text = user.name + " ", fontSize = 20.sp, fontWeight = FontWeight.Bold)
+            Image(
+                painter = painterResource(id = R.drawable.plus),
+                contentDescription = "Plus",
                 modifier = Modifier
-                    .fillMaxWidth()
-            ) {
-                Text(text = user.name + "  ", fontSize = 16.sp)
-                Image(
-                    painter = painterResource(id = R.drawable.plus),
-                    contentDescription = "Plus",
-                    modifier = Modifier
-                        .size(16.dp)
-                )
-            }
-            Row(
-                horizontalArrangement = Arrangement.Center,
-                modifier = Modifier
-                    .fillMaxWidth()
-            ) {
-                Text(
-                    text = user.city + ", " + user.country,
-                    color = Color.Gray,
-                    fontSize = 12.sp,
-                    modifier = Modifier
-                        .padding(top = 4.dp, bottom = 4.dp)
-                )
-            }
-            Text(
-                text = user.info, textAlign = TextAlign.Center, modifier = Modifier
-                    .padding(16.dp)
+                    .size(20.dp)
             )
-            Row(
-                horizontalArrangement = Arrangement.SpaceBetween,
-                modifier = Modifier
-                    .padding(16.dp)
-                    .fillMaxWidth()
-            ) {
-                Column {
-                    Image(
-                        painter = painterResource(id = R.drawable.posts),
-                        contentDescription = "User Avatar",
-                        modifier = Modifier
-                            .size(22.dp)
-                            .align(alignment = CenterHorizontally)
-                    )
-                    Row {
-                        Text(
-                            text = user.posts.toString() + " " + "posts",
-                            fontSize = 12.sp,
-                            color = Color.Gray,
-                        )
-                    }
-                }
-                Column {
-                    Image(
-                        painter = painterResource(id = R.drawable.folowing),
-                        contentDescription = null,
-                        modifier = Modifier
-                            .size(22.dp)
-                            .align(alignment = CenterHorizontally)
-                    )
-                    Row {
-                        Text(
-                            text = user.folowing.toString() + " " + "folowing",
-                            fontSize = 12.sp,
-                            color = Color.Gray,
-                        )
-                    }
-                }
-                Column {
-                    Image(
-                        painter = painterResource(id = R.drawable.folowers),
-                        contentDescription = null,
-                        modifier = Modifier
-                            .size(22.dp)
-                            .align(alignment = CenterHorizontally)
-                    )
-                    Row {
-                        Text(
-                            text = user.folowers.toString() + " " + "folowers",
-                            fontSize = 12.sp,
-                            color = Color.Gray,
-                        )
-                    }
-                }
-            }
+        }
+        Text(
+            text = user.city + ", " + user.country,
+            color = Color.Gray,
+            fontSize = 12.sp,
+            modifier = Modifier
+                .padding(top = 4.dp, bottom = 4.dp)
+        )
+        Text(
+            text = user.info, textAlign = TextAlign.Center, modifier = Modifier
+                .padding(top = 16.dp, bottom = 24.dp)
+        )
+        Row(
+            horizontalArrangement = Arrangement.SpaceBetween,
+            modifier = Modifier
+                .padding(start = 24.dp, end = 24.dp)
+                .fillMaxWidth()
+        ) {
+            UserInfo(number = user.posts, text = "posts", image = R.drawable.posts)
+            UserInfo(number = user.folowing, text = "folowing", image = R.drawable.folowing)
+            UserInfo(number = user.folowers, text = "folowers", image = R.drawable.folowers)
         }
     }
 }
