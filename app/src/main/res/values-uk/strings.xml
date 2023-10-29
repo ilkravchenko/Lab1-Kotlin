@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="name_of_user">Пабло Ескобар</string>
+    <string name="calling">Телефонуємо...</string>
+    <string name="posts">Постів</string>
+    <string name="folowing">Читає</string>
+    <string name="folowers">Читають</string>
+</resources>
