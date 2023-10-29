@@ -1,3 +1,8 @@
 <resources>
-    <string name="app_name">Lab1</string>
+    <string name="app_name" translatable="false">Lab1</string>
+    <string name="name_of_user">Pablo Escobar</string>
+    <string name="calling">Calling...</string>
+    <string name="posts">posts</string>
+    <string name="folowing">folowing</string>
+    <string name="folowers">folowers</string>
 </resources>

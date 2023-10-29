@@ -14,6 +14,7 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.shape.RoundedCornerShape
+import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
@@ -22,18 +23,30 @@ import androidx.compose.ui.draw.clip
 import androidx.compose.ui.draw.paint
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.layout.ContentScale
+import androidx.compose.ui.res.dimensionResource
 import androidx.compose.ui.res.painterResource
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.example.lab1.R
+import com.example.lab1.TranslationPreview
+import com.example.lab1.model.UserProfile
 import com.example.lab1.ui.theme.Lab1Theme
 
 @Composable
 fun CallView(
+    user: UserProfile,
     modifier: Modifier = Modifier
 ) {
+    val spacerPadding = dimensionResource(id = R.dimen.spacer_padding_100)
+    val mediumPadding = dimensionResource(id = R.dimen.padding_medium)
+    val largePadding = dimensionResource(id = R.dimen.padding_large)
+    val topPadding = dimensionResource(id = R.dimen.top_padding_call)
+    val bottomPadding = dimensionResource(id = R.dimen.bottom_padding_call)
+    val btnSize = dimensionResource(id = R.dimen.btn_size)
+
     Box(
         modifier = Modifier
             .fillMaxSize()
@@ -45,21 +58,21 @@ fun CallView(
     ) {
         Spacer(
             modifier = Modifier
-                .height(100.dp)
+                .height(spacerPadding)
         )
         Row(
             horizontalArrangement = Arrangement.Start,
             modifier = Modifier
-                .padding(start = 16.dp, top = 50.dp)
+                .padding(start = mediumPadding, top = topPadding)
         ) {
             CreateButton(
                 image = R.drawable.left_arrow,
                 imageDescription = "Go back",
-                backgroundColor = Color.White.copy(alpha = 0f),
+                backgroundColor = MaterialTheme.colorScheme.onPrimary.copy(alpha = 0f),
                 modifierBox = Modifier
-                    .size(45.dp)
+                    .size(btnSize)
                     .clip(RoundedCornerShape(percent = 35))
-                    .background(color = Color.White.copy(alpha = 0.2f))
+                    .background(color = MaterialTheme.colorScheme.onPrimary.copy(alpha = 0.2f))
                     .border(1.dp, Color.White.copy(alpha = 0.3f), RoundedCornerShape(percent = 35))
             )
         }
@@ -69,40 +82,40 @@ fun CallView(
                 horizontalAlignment = Alignment.CenterHorizontally,
                 modifier = Modifier
                     .fillMaxSize()
-                    .padding(bottom = 75.dp)
+                    .padding(bottom = bottomPadding)
             ) {
                 Text(
-                    text = "Calling...", color = Color.White,
+                    text = stringResource(R.string.calling), color = MaterialTheme.colorScheme.onPrimary,
                     modifier = Modifier
-                        .padding(bottom = 16.dp)
+                        .padding(bottom = mediumPadding)
                 )
                 Text(
-                    text = "Pablo Escobar",
-                    color = Color.White,
+                    text = user.name,
+                    color = MaterialTheme.colorScheme.onPrimary,
                     fontSize = 20.sp,
                     fontWeight = FontWeight.Bold,
                     modifier = Modifier
-                        .padding(bottom = 24.dp)
+                        .padding(bottom = largePadding)
                 )
                 Row(
                     modifier = Modifier
-                        .padding(top = 24.dp)
+                        .padding(top = largePadding)
                 ) {
                     CreateButton(
                         image = R.drawable.mute_microphone,
-                        backgroundColor = Color.White,
+                        backgroundColor = MaterialTheme.colorScheme.onPrimary,
                         imageDescription = "Mute Microphone"
                     )
                     buttonSpacer()
                     CreateButton(
                         image = R.drawable.end_call,
-                        backgroundColor = Color.Red,
+                        backgroundColor = MaterialTheme.colorScheme.error,
                         imageDescription = "End Call"
                     )
                     buttonSpacer()
                     CreateButton(
                         image = R.drawable.volume_up,
-                        backgroundColor = Color.White,
+                        backgroundColor = MaterialTheme.colorScheme.onPrimary,
                         imageDescription = "Volume Up"
                     )
                 }
@@ -111,10 +124,10 @@ fun CallView(
     }
 }
 
-@Preview
+@TranslationPreview
 @Composable
 fun CallViewPreview() {
     Lab1Theme {
-        CallView()
+        CallView(user = UserProfile.example)
     }
 }

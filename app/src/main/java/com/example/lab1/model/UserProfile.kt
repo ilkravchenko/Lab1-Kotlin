@@ -16,7 +16,7 @@ data class UserProfile(
     companion object {
         val example = UserProfile(
             1,
-            "Illia Kravchenko",
+            "Pablo Escobar",
             R.drawable.first_avatar,
             "Kyiv",
             "Ukraine",

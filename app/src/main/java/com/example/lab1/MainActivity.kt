@@ -10,6 +10,9 @@ import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
+import com.example.lab1.CallingDesign.CallView
+import com.example.lab1.ProfileDesign.Profile
+import com.example.lab1.model.UserProfile
 import com.example.lab1.ui.theme.Lab1Theme
 
 class MainActivity : ComponentActivity() {
@@ -19,7 +22,7 @@ class MainActivity : ComponentActivity() {
             Lab1Theme {
                 // A surface container using the 'background' color from the theme
                 Surface(modifier = Modifier.fillMaxSize(), color = MaterialTheme.colorScheme.background) {
-                    Greeting("Android")
+                    Profile(user = UserProfile.example)
                 }
             }
         }
